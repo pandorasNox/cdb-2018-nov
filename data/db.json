@@ -1,0 +1,12 @@
+{
+    "products": [
+        { "id": 1, "name": "triangle"},
+        { "id": 2, "name": "square"},
+        { "id": 3, "name": "pentagon"}
+    ],
+    "reviews": [
+        { "id": 1, "productId": 1, "author": "Alice", "rating": 5, "comment": "Triangles are 3D rulers."},
+        { "id": 2, "productId": 1, "author": "John", "rating": 3, "comment": "Square working better for me."},
+        { "id": 3, "productId": 2, "author": "John", "rating": 5, "comment": "Bought that, it's in good shape"}
+    ]
+}
