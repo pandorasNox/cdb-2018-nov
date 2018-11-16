@@ -4,7 +4,7 @@ import Html exposing (Html, button, div, text, ul, li)
 import Html.Events exposing (onClick)
 import Json.Decode exposing (Decoder, map2, field, int, string)
 import Http
-import List exposing (map)
+import List exposing (map, length)
 
 
 main : Program () Model Msg
@@ -69,13 +69,22 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-  div []
-    [ button [ onClick Decrement ] [ text "-" ]
-    , div [] [ text (String.fromInt model.counter) ]
-    , button [ onClick Increment ] [ text "+" ]
-    , button [ onClick Reset ] [ text "reset" ]
-    , div [] [(productsView model)]
-    ]
+  if length(model.products) == 0 then
+    div []
+      [ button [ onClick Decrement ] [ text "-" ]
+      , div [] [ text (String.fromInt model.counter) ]
+      , button [ onClick Increment ] [ text "+" ]
+      , button [ onClick Reset ] [ text "reset" ]
+      , div [] [ text "couldn't load products" ]
+      ]
+  else
+    div []
+      [ button [ onClick Decrement ] [ text "-" ]
+      , div [] [ text (String.fromInt model.counter) ]
+      , button [ onClick Increment ] [ text "+" ]
+      , button [ onClick Reset ] [ text "reset" ]
+      , div [] [(productsView model)]
+      ]
 
 
 productsView : Model -> Html Msg
