@@ -12,15 +12,15 @@ clear-cache: ##@dev clear elm cache
 
 .PHONY: cli
 cli: ##@dev provide docker based environment with elm tooling
-	docker run -it --rm -v "$(PWD):/code" -w "/code" -v "/tmp/.elm:/tmp/.elm" -e "HOME=/tmp" -u "$(UID):$(GID)" -p 8000:8000 --entrypoint="bash" codesimple/elm:0.19
+	docker run -it --rm -v "$(PWD):/code" -w "/code" -v "/tmp/.elm:/tmp/.elm" -e "HOME=/tmp" -u "$(UID):$(GID)" -p 8031:8031 --entrypoint="bash" codesimple/elm:0.19
 
 .PHONY: build
 build: ##@build builds js file from elm source files
-	docker run -it --rm -v "$(PWD):/code" -w "/code" -v "/tmp/.elm:/tmp/.elm" -e "HOME=/tmp" -u "$(UID):$(GID)" -p 8000:8000 --entrypoint="bash" codesimple/elm:0.19 -c "elm make src/Main.elm --output=dist/build.js --optimize"
+	docker run -it --rm -v "$(PWD):/code" -w "/code" -v "/tmp/.elm:/tmp/.elm" -e "HOME=/tmp" -u "$(UID):$(GID)" --entrypoint="bash" codesimple/elm:0.19 -c "elm make src/Main.elm --output=dist/build.js --optimize"
 
 .PHONY: serve
 serve: ##@dev runs node server which serves elm apps on port :8000
-	docker run -it --rm -v "$(PWD):/code" -w "/code" -v "/tmp/.elm:/tmp/.elm" -e "HOME=/tmp" -u "$(UID):$(GID)" -p 8000:8000 codesimple/elm:0.19 reactor
+	docker run -it --rm -v "$(PWD):/code" -w "/code" -v "/tmp/.elm:/tmp/.elm" -e "HOME=/tmp" -u "$(UID):$(GID)" -p 8033:8033 codesimple/elm:0.19 reactor --port 8033
 
 .PHONY: serve-api-mock
 serve-api-mock: ##@dev start api mock server

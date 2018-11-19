@@ -1,19 +1,17 @@
 
+module Counter exposing (..)
+
 import Browser
 import Html exposing (Html, button, div, text)
 import Html.Events exposing (onClick)
-
-
-main =
-  Browser.sandbox { init = init, update = update, view = view }
 
 
 -- MODEL
 
 type alias Model = Int
 
-init : Model
-init =
+initModel : Model
+initModel =
   0
 
 
@@ -36,7 +34,13 @@ update msg model =
 view : Model -> Html Msg
 view model =
   div []
-    [ button [ onClick Decrement ] [ text "-" ]
-    , div [] [ text (String.fromInt model) ]
+    [ div [] [ text (String.fromInt model) ]
     , button [ onClick Increment ] [ text "+" ]
+    , button [ onClick Decrement ] [ text "-" ]
     ]
+
+
+-- MAIN
+
+main =
+  Browser.sandbox { init = initModel, update = update, view = view }

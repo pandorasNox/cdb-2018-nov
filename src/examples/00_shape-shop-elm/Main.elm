@@ -41,13 +41,13 @@ update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
     Increment ->
-      (Model (model.counter + 1) [], Cmd.none)
+      (Model (model.counter + 1) model.products, Cmd.none)
 
     Decrement ->
-      (Model (model.counter - 1) [], Cmd.none)
+      (Model (model.counter - 1) model.products, Cmd.none)
 
     Reset ->
-      ({ counter = 0, products = []}, Cmd.none)
+      ({ counter = 0, products = model.products}, Cmd.none)
 
     ProductsResult (Ok products) ->
       ({ counter = model.counter, products = products}, Cmd.none)
