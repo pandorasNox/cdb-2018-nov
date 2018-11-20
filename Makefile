@@ -26,3 +26,17 @@ serve: ##@dev runs node server which serves elm apps on port :8000
 serve-api-mock: ##@dev start api mock server
 	docker build -t json-server docker/json-server
 	docker run -it --rm -v "$(PWD)/data:/data" -w /data -u "$(UID):$(GID)" -p 9988:9988 json-server --watch db.json -p 9988 --host 0.0.0.0
+
+.PHONY: init-react
+init-react: ##@dev
+	docker run -it --rm -v "$(PWD)/src/react:/temp" create-react-app /temp
+	sudo chown -R "$(UID):$(GID)" "$(PWD)/src/react"
+
+.PHONY: serve-react
+serve-react: ##@dev
+	docker run -it --rm -v "$(PWD)/src/react:/temp" -w "/temp" -p 9966:3000 node:10.13.0-alpine npm start
+
+.PHONY: eject-react
+eject-react: ##@dev
+	docker run -it --rm -v "$(PWD)/src/react:/temp" -w "/temp" -p 9966:3000 node:10.13.0-alpine npm run eject
+	sudo chown -R "$(UID):$(GID)" "$(PWD)/src/react"
