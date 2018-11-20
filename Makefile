@@ -40,3 +40,11 @@ serve-react: ##@dev
 eject-react: ##@dev
 	docker run -it --rm -v "$(PWD)/src/react:/temp" -w "/temp" -p 9966:3000 node:10.13.0-alpine npm run eject
 	sudo chown -R "$(UID):$(GID)" "$(PWD)/src/react"
+
+.PHONY: node-cli
+node-cli: ##@dev
+	docker run -it --rm -v "$(PWD)/src/react:/temp" -w "/temp" -p 9966:3000 node:10.13.0-alpine sh
+
+.PHONY: fix
+fix: ##@setup e.g. fix directory rights
+	sudo chown -R "$(UID):$(GID)" "$(PWD)/src/react"
