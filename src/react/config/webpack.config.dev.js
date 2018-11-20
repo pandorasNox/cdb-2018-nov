@@ -323,12 +323,25 @@ module.exports = {
             // its runtime that would otherwise be processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+            exclude: [/\.(js|mjs|jsx|ts|tsx|elm)$/, /\.html$/, /\.json$/],
             loader: require.resolve('file-loader'),
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          {
+            test: /\.elm$/,
+            exclude: [/elm-stuff/, /node_modules/],
+            loader: require.resolve('elm-webpack-loader')
+          },
+          // {
+          //   test: /\.elm$/,
+          //   exclude: [/elm-stuff/, /node_modules/],
+          //   use: {
+          //     loader: 'elm-webpack-loader',
+          //     options: {}
+          //   }
+          // },
         ],
       },
       // ** STOP ** Are you adding a new loader?

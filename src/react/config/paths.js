@@ -50,6 +50,7 @@ const moduleFileExtensions = [
   'json',
   'web.jsx',
   'jsx',
+  '.elm',
 ];
 
 // Resolve file paths in the same order as webpack
