@@ -5,6 +5,8 @@ UID:=$(shell id -u)
 GID:=$(shell id -g)
 PWD:=$(shell pwd)
 
+DOCKER_NODE_ELM_REACT_IMG_SHA:=$(shell docker build -q ./docker/node-elm-react)
+
 .PHONY: clear-cache
 clear-cache: ##@dev clear elm cache
 	rm -rf /tmp/.elm
@@ -43,7 +45,7 @@ eject-react: ##@dev
 
 .PHONY: node-cli
 node-cli: ##@dev
-	docker run -it --rm -v "$(PWD)/src/react:/temp" -w "/temp" -p 9966:3000 node:10.13.0-alpine sh
+	docker run -it --rm -v "$(PWD)/src/react:/temp" -w "/temp" -p 9966:3000 $(DOCKER_NODE_ELM_REACT_IMG_SHA) sh
 
 .PHONY: fix
 fix: ##@setup e.g. fix directory rights
