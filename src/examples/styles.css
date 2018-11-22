@@ -1,0 +1,23 @@
+.counter {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 10vmin 0 10vmin;
+}
+
+.counter Button {
+    width: 30vmin;
+    height: 10vmin;
+    border: none;
+    font-size: 10vmin;
+    line-height: 10vmin;
+    margin-bottom: 5vmin;
+}
+
+.counter .display {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 5vmin;
+    font-size: 10vmin;
+}

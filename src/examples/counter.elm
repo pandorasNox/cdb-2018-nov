@@ -2,8 +2,9 @@
 module Counter exposing (..)
 
 import Browser
-import Html exposing (Html, button, div, text)
+import Html exposing (Html, button, div, text, node, p, span)
 import Html.Events exposing (onClick)
+import Html.Attributes exposing(class, rel, href)
 
 
 -- MODEL
@@ -33,11 +34,17 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-  div []
-    [ div [] [ text (String.fromInt model) ]
+  div [ class "counter" ]
+    [ css "https://necolas.github.io/normalize.css/8.0.0/normalize.css"
+    , css "styles.css"
+    ,  p [ class "display"] [ text (String.fromInt model) ]
     , button [ onClick Increment ] [ text "+" ]
     , button [ onClick Decrement ] [ text "-" ]
     ]
+
+css : String -> Html Msg
+css path =
+    node "link" [ rel "stylesheet", href path ] []
 
 
 -- MAIN
