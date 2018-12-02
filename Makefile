@@ -50,3 +50,4 @@ node-cli: ##@dev
 .PHONY: fix
 fix: ##@setup e.g. fix directory rights
 	sudo chown -R "$(UID):$(GID)" "$(PWD)/src/react"
+	mkdir -p /tmp/.elm/0.19.0
